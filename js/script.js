@@ -15,17 +15,23 @@ function campoMinato() {
 //iniziamo con le varibili che vogliamo tenere accessibili alle funzioni children
  //numero bombe
   const NUM_BOMBS = 16;
+
   //massimo numero di tentativi
   let max_attempt;
+
   //array delle bombe
   let bombs;
+
   //punteggio giocatore
   let score;
+
   //fine partita
-  let gameOver = false;
+  let gameOver;
+
   //div da mostrare a fine partita
   const winEl = document.getElementById('win');
   winEl.classList.add('d-none');
+  
   //bottone per lanciare il gioco
   const btn = document.querySelector("button"); 
   btn.addEventListener("click", play);
@@ -44,6 +50,7 @@ function campoMinato() {
         //console.log(numSquare);
         //azzero lo score ad inizio partita
         score = 0;
+        gameOver = false;
         //imposto numero massimo tentativi
         max_attempt = numSquare - NUM_BOMBS;
         //array bombe
@@ -79,7 +86,7 @@ function campoMinato() {
         square.style.width = `calc(100% / ${squareWidth})`;
         square.style.height = square.style.width;
         square.innerHTML = content;
-        square.addEventListener("click", drawClick);
+        square.addEventListener("click", drawClick); //, {once: true} eventualmente come terzo parametro
         return square;
     }
 
@@ -132,7 +139,7 @@ function campoMinato() {
         //creo array che conterrà le bombe
         const bombsArray = [];
         while(bombsArray.length < NUM_BOMBS){
-            let bomb = getRndInteger(1, numSquare);//33 , 44,70,80,33
+            let bomb = getRndInteger(1, numSquare);
             //console.log(bomb);
         if(!bombsArray.includes(bomb)){
             bombsArray.push(bomb);
@@ -177,9 +184,9 @@ function campoMinato() {
      * @param {string} message 
      */
     function onGameOver(message){
-        const arraySquareBombs = document.getElementsByClassName('square');
-        for(let i = 0; i < arraySquareBombs.length; i++){
-            let el = arraySquareBombs[i];
+        const arraySquare = document.getElementsByClassName('square');
+        for(let i = 0; i < arraySquare.length; i++){
+            let el = arraySquare[i];
             el.removeEventListener('click',drawClick);
             if(bombs.includes(parseInt(el.textContent))){
                 el.classList.add("bomb");
@@ -187,7 +194,7 @@ function campoMinato() {
                 el.innerHTML = '<i class="fa-solid fa-bomb fa-beat"></i>';
             }
         }
-        const winEl = document.getElementById('win');
+        
         winEl.classList.toggle("d-none");
         winEl.innerHTML = message;
     }
