@@ -1,0 +1,64 @@
+/* general */
+
+
+:root {
+    --ms-orange: #F28705;
+    --ms-yellow: #D9CF43;
+    --ms-green: #395873;
+    --ms-dark: #010440;
+    --ms-primary: #7302178a;
+    --ms-light: #ffffff;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+footer {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#playground {
+    width: 600px;
+    height: 600px;
+    background-color: black;
+    margin: 30px auto;
+    display: flex;
+    flex-wrap: wrap;
+    position:relative;
+}
+#win{
+    position:absolute;
+    z-index: 1000;
+    width:300px;
+    height:200px;
+    top: 320px;
+    left:50%;
+    transform: translate(-50%, -50%);
+    border:2px solid red;
+    background-color: #D9CF43;
+    color:black;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.square {
+    border: 2px solid white;
+    /* width: calc(100% / 8);
+    height: calc(100% / 8); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: crosshair;
+}
+
+.active {
+    background-color: aquamarine;
+}
+.bomb{
+    background-color: red;
+}
